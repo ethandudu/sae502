@@ -15,5 +15,8 @@
     "fastify": "^5.1.0",
     "jquery": "^3.7.1",
     "material-symbols": "^0.27.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
