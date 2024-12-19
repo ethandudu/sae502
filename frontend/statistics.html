@@ -6,9 +6,6 @@
     <title>Statistiques - LogMaster</title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link href="../node_modules/material-symbols/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-          crossorigin=""/>
 </head>
 <body>
 <header>
@@ -34,11 +31,6 @@
                             <span class="d-block mx-auto mb-1 material-symbols-rounded">radar</span>Détection
                         </a>
                     </li>
-                    <li>
-                        <a href="files.html" class="d-flex flex-column nav-link text-white align-items-center">
-                            <span class="d-block mx-auto mb-1 material-symbols-rounded">docs</span>Fichiers
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -49,8 +41,18 @@
         <div class="row">
             <div class="col-12">
                 <h1 class="text-center mt-5">Statistiques</h1>
-                <div class="d-flex justify-content-center mt-5">
-                    Fichier chargé : <span id="filename">chargement ...</span>
+                <div class="row">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="text-center">Fichier chargé : file.txt</h4>
+                            <form method="post">
+                                <div class="d-flex justify-content-center mt-5">
+                                    <label for="format" class="form-label text-center">Format</label><input type="text" name="format" id="format" class="form-control" placeholder="Format" value='%{LOGIN}e %h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %T'>
+                                    <button type="submit" class="btn btn-primary ms-3">Filtrer</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -108,29 +110,44 @@
         </div>
     </div>
     <div class="container">
-        <div class="row">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Carte des flux</h5>
-                    <div id="map" style="height: 380px"></div>
-                </div>
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-striped table-hover mt-5">
+                    <thead>
+                    <tr>
+                        <th scope="col">IP</th>
+                        <th scope="col">Fréquence</th>
+                    </tr>
+                    </thead>
+                    <tbody id="ip">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-striped table-hover mt-5">
+                    <thead>
+                    <tr>
+                        <th scope="col">Navigateur</th>
+                        <th scope="col">Fréquence</th>
+                    </tr>
+                    </thead>
+                    <tbody id="browser">
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </main>
+<footer class="footer mt-auto py-3 bg-light border-top fixed-bottom">
+    <p class="text-center text-body-secondary">© 2024 LogMaster</p>
+</footer>
 <script src="../node_modules/ajax/lib/ajax.js"></script>
 <script src="../node_modules/jquery/dist/jquery.min.js"></script>
 <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""></script>
 <script src="js/script.js"></script>
-<script>
-    var map = L.map('map').setView([48.8534, 2.3488], 2);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
-</script>
 </body>
 </html>
