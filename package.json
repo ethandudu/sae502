@@ -10,9 +10,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "ajax": "^0.0.4",
+    "@fastify/multipart": "^9.0.2",
     "bootstrap": "^5.3.3",
     "fastify": "^5.1.0",
+    "fastify-multipart": "^5.3.1",
     "jquery": "^3.7.1",
     "material-symbols": "^0.27.2"
   },
