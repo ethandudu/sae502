@@ -4,7 +4,7 @@ const { pipeline } = require('node:stream/promises')
 
 fastify.register(require('@fastify/multipart'))
 
-let fileName = ''
+let fileName = 'Unknown'
 let fileContent = ''
 
 fastify.post('/upload', async function (req, reply) {

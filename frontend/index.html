@@ -43,7 +43,7 @@
                 <h1 class="text-center mt-5">LogMaster</h1>
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="text-center">Fichier chargé : file.txt</h4>
+                        <h4 class="text-center" id="filename">Fichier chargé : file.txt</h4>
                         <form method="post">
                             <div class="d-flex justify-content-center mt-5">
                                 <label for="format" class="form-label text-center">Format</label><input type="text" name="format" id="format" class="form-control" placeholder="Format" value='%{LOGIN}e %h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %T'>
@@ -105,17 +105,18 @@
         } catch (e) {
             alert('Erreur lors du chargement du fichier');
         }
+        location.reload();
     });
 
-    document.onload = async function() {
-        try {
-            const resp = await fetch('http://localhost:3000/filename');
-            const result = await resp.json();
-            console.log(result);
-        } catch (e) {
-            console.error(e);
-        }
-    }
+    $(function() {
+        $.ajax({
+            url: 'http://localhost:3000/filename',
+            type: 'GET',
+            success: function(data) {
+                document.getElementById('filename').innerText = 'Fichier chargé : ' + data.filename;
+            }
+        });
+    });
 </script>
 </body>
 </html>
