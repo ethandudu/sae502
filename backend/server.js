@@ -27,9 +27,9 @@ fastify.get('/filename', async function(req, reply) {
     return { filename: fileName }
 })
 
-fastify.get('/getlog', async function(req, reply) {
+fastify.get('/logs', async function(req, reply) {
     const resp = await parseLog()
-    reply.send(resp)
+    reply.send(resp).header('Content-Type', 'application/json')
 })
 
 fastify.listen({ port: 3000 }, err => {
@@ -38,8 +38,30 @@ fastify.listen({ port: 3000 }, err => {
 })
 
 async function parseLog() {
+    const logPattern = /(\S+) (\S+) (\S+) \[(.+?)] "(\S+) (.+?) (\S+)" (\d{3}) (\d+) "([^"]*)" "([^"]*)" (\d+)/
+    const file = fs.readFileSync('./uploaded.log', 'utf8')
+    const logs = []
 
-    return JSON.stringify(data)
+    for await (const line of file.split('\n')) {
+        const match = line.match(logPattern)
+        if (match) {
+            const log = {
+                ip: match[1],
+                user: match[3],
+                date: match[4],
+                method: match[5],
+                url: match[6],
+                protocol: match[7],
+                status: match[8],
+                size: match[9],
+                referer: match[10],
+                agent: match[11],
+                thread: match[12]
+            }
+            logs.push(log)
+        }
+    }
+    return JSON.stringify(logs)
 }
 
 // on fastify server stop
