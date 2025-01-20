@@ -11,7 +11,6 @@
   "description": "",
   "dependencies": {
     "@fastify/multipart": "^9.0.2",
-    "ajax": "^0.0.4",
     "bootstrap": "^5.3.3",
     "fastify": "^5.1.0",
     "fastify-multipart": "^5.3.1",
