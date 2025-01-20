@@ -82,7 +82,6 @@
 <footer class="footer mt-auto py-3 bg-light border-top fixed-bottom">
     <p class="text-center text-body-secondary">© 2025 LogMaster</p>
 </footer>
-<script src="../node_modules/ajax/lib/ajax.js"></script>
 <script src="../node_modules/jquery/dist/jquery.min.js"></script>
 <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/script.js"></script>
@@ -98,11 +97,25 @@
                 body: formData
             })
             const result = await resp.json();
+            if (result.success) {
+                alert('Fichier chargé avec succès');
+            } else {
+                alert('Erreur lors du chargement du fichier');
+            }
+        } catch (e) {
+            alert('Erreur lors du chargement du fichier');
+        }
+    });
+
+    document.onload = async function() {
+        try {
+            const resp = await fetch('http://localhost:3000/filename');
+            const result = await resp.json();
             console.log(result);
         } catch (e) {
             console.error(e);
         }
-    });
+    }
 </script>
 </body>
 </html>
