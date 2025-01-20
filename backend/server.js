@@ -5,7 +5,6 @@ const { pipeline } = require('node:stream/promises')
 fastify.register(require('@fastify/multipart'))
 
 let fileName = 'Unknown'
-let fileContent = ''
 
 fastify.post('/upload', async function (req, reply) {
     const data = await req.file()
@@ -18,7 +17,8 @@ fastify.post('/upload', async function (req, reply) {
     data.mimetype
 
     fileName = data.filename
-    fileContent = data.file
+    //write file to disk
+    await pipeline(data.file, fs.createWriteStream(`./uploaded.log`))
 
     reply.send({ success: true })
 })
@@ -27,7 +27,19 @@ fastify.get('/filename', async function(req, reply) {
     return { filename: fileName }
 })
 
+fastify.get('/getlog', async function(req, reply) {
+    const resp = await parseLog()
+
+    reply.send(resp)
+})
+
 fastify.listen({ port: 3000 }, err => {
     if (err) throw err
     console.log(`server listening on ${fastify.server.address().port}`)
 })
+
+async function parseLog() {
+
+
+    return JSON.stringify(data)
+}
