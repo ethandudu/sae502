@@ -29,7 +29,6 @@ fastify.get('/filename', async function(req, reply) {
 
 fastify.get('/getlog', async function(req, reply) {
     const resp = await parseLog()
-
     reply.send(resp)
 })
 
@@ -40,6 +39,12 @@ fastify.listen({ port: 3000 }, err => {
 
 async function parseLog() {
 
-
     return JSON.stringify(data)
 }
+
+// on fastify server stop
+fastify.addHook('onClose', async (instance, done) => {
+    //delete uploaded file
+    fs.unlinkSync('./uploaded.log')
+    done()
+})
