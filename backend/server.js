@@ -1,7 +1,12 @@
 const fastify = require('fastify')()
 const fs = require('node:fs')
 const { pipeline } = require('node:stream/promises')
+const cors = require('@fastify/cors')
 
+fastify.register(cors, {
+    origin: '*',
+    methods: ['GET', 'POST']
+})
 fastify.register(require('@fastify/multipart'))
 
 let fileName = 'Unknown'
