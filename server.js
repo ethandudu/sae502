@@ -3,6 +3,12 @@ const fastifyView = require('@fastify/view')
 const cors = require('@fastify/cors')
 const path = require('path')
 
+
+fastify.register(require('@fastify/static'), {
+    root: path.join(__dirname, 'public'), // Dossier public pour les fichiers statiques
+    prefix: '/public/', // URL de base pour accéder aux fichiers statiques
+});
+
 fastify.register(cors, {
     origin: '*',
     methods: ['GET', 'POST']
