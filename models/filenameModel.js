@@ -1,7 +1,7 @@
 let fileName = 'Unknown'
 
 class FilenameModel {
-    static  getFilename() {
+    static getFilename() {
         return fileName
     }
 

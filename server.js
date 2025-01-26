@@ -22,7 +22,7 @@ fastify.register(fastifyView, {
     root: path.join(__dirname, 'views'),
 })
 
-fastify.register(require('./routes/indexRoutes'))
+fastify.register(require('./routes/routes'))
 
 const start = async () => {
     try {

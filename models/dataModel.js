@@ -7,6 +7,10 @@ class dataModel {
 }
 
 async function parseLogs() {
+    //check if file exists
+    if (!fs.existsSync('./uploaded.log')) {
+        return
+    }
     const logPattern = /(\S+) (\S+) (\S+) \[(.+?)] "(\S+) (.+?) (\S+)" (\d{3}) (\d+) "([^"]*)" "([^"]*)" (\d+)/
     const file = fs.readFileSync('./uploaded.log', 'utf8')
     const logs = []
