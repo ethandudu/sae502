@@ -45,18 +45,15 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="text-center" id="filename">Fichier chargé : <%= filename %></h4>
-                        <form method="post">
-                            <div class="d-flex justify-content-center mt-5">
-                                <label for="format" class="form-label text-center">Format</label><input type="text" name="format" id="format" class="form-control" placeholder="Format" value='%{LOGIN}e %h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %T' disabled>
-                                <button type="submit" class="btn btn-primary ms-3">Filtrer</button>
+                        <form method="post" enctype="multipart/form-data" class="form-group" id="UploadFile">
+                            <div class="mb-3">
+                                <label for="format" class="form-label">Format</label><input type="text" name="pattern" id="format" class="form-control" placeholder="Format" value='<%= pattern %>'>
+                            </div>
+                            <div class="mb-3">
+                                <label for="file" class="form-label">Fichier</label><input type="file" name="file" id="file" class="form-control" accept=".log" required>
+                            <button type="submit" class="btn btn-success mt-3">Charger</button>
                             </div>
                         </form>
-                        <div class="d-flex mt-5">
-                            <form method="post" enctype="multipart/form-data" class="form-group" id="UploadFile">
-                                <input type="file" name="file" id="file" class="form-control" accept=".log" required>
-                                <button type="submit" class="btn btn-success mt-3">Charger</button>
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>

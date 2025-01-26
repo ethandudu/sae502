@@ -1,8 +1,17 @@
 const fs = require('node:fs')
+let pattern = ''
 
 class dataModel {
     static getParsedLogs() {
         return parseLogs()
+    }
+
+    static getPattern() {
+        return pattern
+    }
+
+    static setPattern(newPattern) {
+        pattern = newPattern
     }
 }
 
