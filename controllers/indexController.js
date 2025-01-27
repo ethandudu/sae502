@@ -11,13 +11,6 @@ class IndexController {
     static async upload(req, reply) {
         const data = await req.file()
         const pattern = data.fields.pattern.value
-        console.log(pattern)
-        data.file
-        data.fields
-        data.fieldname
-        data.filename
-        data.encoding
-        data.mimetype
 
         FileNameModel.setFilename(data.filename)
         DataModel.setPattern(pattern)
