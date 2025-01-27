@@ -10,7 +10,8 @@ class IndexController {
 
     static async upload(req, reply) {
         const data = await req.file()
-        const pattern = req.body.pattern
+        const pattern = data.fields.pattern.value
+        console.log(pattern)
         data.file
         data.fields
         data.fieldname
@@ -19,6 +20,7 @@ class IndexController {
         data.mimetype
 
         FileNameModel.setFilename(data.filename)
+        DataModel.setPattern(pattern)
         await pipeline(data.file, fs.createWriteStream(`./uploaded.log`))
         reply.redirect('/')
     }

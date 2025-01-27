@@ -47,7 +47,7 @@
                         <h4 class="text-center" id="filename">Fichier chargé : <%= filename %></h4>
                         <form method="post" enctype="multipart/form-data" class="form-group" id="UploadFile">
                             <div class="mb-3">
-                                <label for="format" class="form-label">Format</label><input type="text" name="pattern" id="format" class="form-control" placeholder="Format" value='<%= pattern %>'>
+                                <label for="format" class="form-label">Format</label><input type="text" name="pattern" id="format" class="form-control" placeholder="Format" value='<%= pattern %>' required>
                             </div>
                             <div class="mb-3">
                                 <label for="file" class="form-label">Fichier</label><input type="file" name="file" id="file" class="form-control" accept=".log" required>
