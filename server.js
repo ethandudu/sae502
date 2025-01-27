@@ -27,7 +27,7 @@ fastify.register(require('./routes/routes'))
 const start = async () => {
     try {
         await fastify.listen({ port: 3000 }, err => {
-            console.log(`server listening on ${fastify.server.address().port}`)
+            console.log(`server listening on http://localhost:${fastify.server.address().port}`)
         })
     } catch (e) {
         fastify.log.error(e)
