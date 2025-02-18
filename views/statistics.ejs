@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - LogMaster</title>
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+    <link href="/public/material-symbols/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/bootstrap-table.min.css">
+</head>
+<body>
+<header>
+    <div class="px-3 py-2 text-bg-dark border-bottom">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="./" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+                    <span class="fs-4">LogMaster</span>
+                </a>
+                <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                    <li>
+                        <a href="./" class="d-flex flex-column nav-link text-white align-items-center">
+                            <span class="d-block mx-auto mb-1 material-symbols-rounded">home</span>Accueil
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="d-flex flex-column nav-link text-white align-items-center">
+                            <span class="d-block mx-auto mb-1 material-symbols-rounded">table</span>Statistiques
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./detection" class="d-flex flex-column nav-link text-white align-items-center">
+                            <span class="d-block mx-auto mb-1 material-symbols-rounded">radar</span>Détection
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center mt-5">LogMaster</h1>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="text-center" id="filename">Fichier chargé : <%= filename %></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+            <div class="col">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="https://img.icons8.com/material/100/counter.png" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Nombre de requêtes</h5>
+                                <p class="card-text"><%= stats.totalRequests %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="https://img.icons8.com/material/100/weight.png" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Taille totale transférée</h5>
+                                <p class="card-text"><%= stats.totalSize %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="https://img.icons8.com/material-outlined/100/ip-address--v2.png" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Nombre d'IP uniques</h5>
+                                <p class="card-text"><%= stats.uniqueIps %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer class="footer mt-auto py-3 bg-light border-top fixed-bottom">
+    <p class="text-center text-body-secondary">© 2025 LogMaster</p>
+    <p class="text-center text-body-secondary">Icons by <a href="https://icons8.com" class="text-decoration-none">Icons8</a></p>
+</footer>
+<script src="/public/js/jquery.min.js"></script>
+<script src="/public/js/bootstrap.bundle.min.js"></script>
+<script src="/public/js/bootstrap-table.min.js"></script>
+</body>
+</html>
