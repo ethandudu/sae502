@@ -13,18 +13,22 @@ class dataModel {
     static setPattern(newPattern) {
         pattern = newPattern
     }
+
+    static getStatistics() {
+        return getStatistics()
+    }
 }
 
-async function parseLogs() {
+function parseLogs() {
     //check if file exists
     if (!fs.existsSync('./uploaded.log')) {
-        return
+        return JSON.stringify({})
     }
     const logPattern = /(\S+) (\S+) (\S+) \[(.+?)] "(\S+) (.+?) (\S+)" (\d{3}) (\d+) "([^"]*)" "([^"]*)" (\d+)/
     const file = fs.readFileSync('./uploaded.log', 'utf8')
     const logs = []
 
-    for await (const line of file.split('\n')) {
+    for (const line of file.split('\n')) {
         const match = line.match(logPattern)
         if (match) {
             const log = {
@@ -44,6 +48,32 @@ async function parseLogs() {
         }
     }
     return JSON.stringify(logs)
+}
+
+async function statistics() {
+    let parsedlog = JSON.parse(await parseLogs())
+    if (!parsedlog) {
+        return null
+    }
+    let ips = {}
+    let totalRequests = 0
+    let totalSize = 0
+
+    for (const line of parsedlog) {
+        if (!ips[line.ip]) {
+            ips[line.ip] = 1
+        } else {
+            ips[line.ip]++
+        }
+        totalRequests++
+        totalSize += parseInt(line.size)
+    }
+
+    return {
+        totalRequests,
+        totalSize,
+        ips
+    }
 }
 
 module.exports = dataModel;

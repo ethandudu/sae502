@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil - LogMaster</title>
     <link rel="stylesheet" href="/public/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/public/material-symbols/index.css">
+    <link href="/public/material-symbols/index.css" rel="stylesheet">
     <link rel="stylesheet" href="/public/css/bootstrap-table.min.css">
 </head>
 <body>
@@ -18,12 +18,12 @@
                 </a>
                 <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                     <li>
-                        <a href="#" class="d-flex flex-column nav-link text-white align-items-center">
+                        <a href="./" class="d-flex flex-column nav-link text-white align-items-center">
                             <span class="d-block mx-auto mb-1 material-symbols-rounded">home</span>Accueil
                         </a>
                     </li>
                     <li>
-                        <a href="./statistics" class="d-flex flex-column nav-link text-white align-items-center">
+                        <a href="#" class="d-flex flex-column nav-link text-white align-items-center">
                             <span class="d-block mx-auto mb-1 material-symbols-rounded">table</span>Statistiques
                         </a>
                     </li>
@@ -45,15 +45,6 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="text-center" id="filename">Fichier chargé : <%= filename %></h4>
-                        <form method="post" enctype="multipart/form-data" class="form-group" id="UploadFile">
-                            <div class="mb-3">
-                                <label for="format" class="form-label">Format</label><input type="text" name="pattern" id="format" class="form-control" placeholder="Format" value='<%= pattern %>' required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="file" class="form-label">Fichier</label><input type="file" name="file" id="file" class="form-control" accept=".log" required>
-                            <button type="submit" class="btn btn-success mt-3">Charger</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -72,22 +63,6 @@
             </tr>
             </thead>
             <tbody id="log">
-            <% if (logs.length > 0) { %>
-                <% for (let i = 0; i < logs.length; i++) { %>
-                    <tr>
-                        <td><%= logs[i].date %></td>
-                        <td><%= logs[i].ip %></td>
-                        <td><%= logs[i].method %></td>
-                        <td><%= logs[i].url %></td>
-                        <td><%= logs[i].status %></td>
-                        <td><%= logs[i].agent %></td>
-                    </tr>
-                <% } %>
-            <% } else { %>
-                <tr>
-                    <td colspan="6" class="text-center">No logs available</td>
-                </tr>
-            <% } %>
             </tbody>
         </table>
     </div>

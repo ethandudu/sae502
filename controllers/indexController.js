@@ -5,7 +5,7 @@ const fs = require('node:fs')
 
 class IndexController {
     static index(req, reply) {
-        reply.view('index', { filename: FileNameModel.getFilename(), table: DataModel.getParsedLogs(), pattern: DataModel.getPattern()});
+        reply.view('index', { filename: FileNameModel.getFilename(), logs: JSON.parse(DataModel.getParsedLogs()), pattern: DataModel.getPattern()});
     }
 
     static async upload(req, reply) {
@@ -16,6 +16,10 @@ class IndexController {
         DataModel.setPattern(pattern)
         await pipeline(data.file, fs.createWriteStream(`./uploaded.log`))
         reply.redirect('/')
+    }
+
+    static statistics(req, reply) {
+        reply.view('statistics', { filename: FileNameModel.getFilename(), stats: DataModel.getStatistics(), pattern: DataModel.getPattern()});
     }
 }
 
