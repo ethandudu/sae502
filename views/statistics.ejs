@@ -51,24 +51,58 @@
         </div>
     </div>
     <div class="container">
-        <table id="logs" class="table table-striped table-hover mt-5" data-pagination="true" data-toggle="table">
-            <thead>
-            <tr>
-                <th scope="col" data-field="date">Date/Heure</th>
-                <th scope="col" data-field="ip">IP</th>
-                <th scope="col" data-field="method">Méthode</th>
-                <th scope="col" data-field="url">URI</th>
-                <th scope="col" data-field="status">Statut</th>
-                <th scope="col" data-field="agent">UA</th>
-            </tr>
-            </thead>
-            <tbody id="log">
-            </tbody>
-        </table>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+            <div class="col">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="https://img.icons8.com/material/100/counter.png" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Nombre de requêtes</h5>
+                                <p class="card-text"><%= stats.totalRequests %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="https://img.icons8.com/material/100/weight.png" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Taille totale transférée</h5>
+                                <p class="card-text"><%= stats.totalSize %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="https://img.icons8.com/material-outlined/100/ip-address--v2.png" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Nombre d'IP uniques</h5>
+                                <p class="card-text"><%= stats.uniqueIps %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
-<footer class="footer mt-auto py-3 bg-light border-top">
+<footer class="footer mt-auto py-3 bg-light border-top fixed-bottom">
     <p class="text-center text-body-secondary">© 2025 LogMaster</p>
+    <p class="text-center text-body-secondary">Icons by <a href="https://icons8.com" class="text-decoration-none">Icons8</a></p>
 </footer>
 <script src="/public/js/jquery.min.js"></script>
 <script src="/public/js/bootstrap.bundle.min.js"></script>

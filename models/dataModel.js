@@ -50,9 +50,9 @@ function parseLogs() {
     return JSON.stringify(logs)
 }
 
-async function statistics() {
-    let parsedlog = JSON.parse(await parseLogs())
-    if (!parsedlog) {
+function getStatistics() {
+    let parsedlog = JSON.parse(parseLogs())
+    if (!Array.isArray(parsedlog)) {
         return null
     }
     let ips = {}
@@ -60,20 +60,23 @@ async function statistics() {
     let totalSize = 0
 
     for (const line of parsedlog) {
-        if (!ips[line.ip]) {
-            ips[line.ip] = 1
-        } else {
+        //count the number of unique ips
+        if (ips[line.ip]) {
             ips[line.ip]++
+        } else {
+            ips[line.ip] = 1
         }
         totalRequests++
         totalSize += parseInt(line.size)
     }
 
-    return {
+    let response = {
         totalRequests,
         totalSize,
-        ips
+        uniqueIps: Object.keys(ips).length,
     }
+
+    return JSON.stringify(response)
 }
 
 module.exports = dataModel;

@@ -19,7 +19,7 @@ class IndexController {
     }
 
     static statistics(req, reply) {
-        reply.view('statistics', { filename: FileNameModel.getFilename(), stats: DataModel.getStatistics(), pattern: DataModel.getPattern()});
+        reply.view('statistics', { filename: FileNameModel.getFilename(), stats: JSON.parse(DataModel.getStatistics()), pattern: DataModel.getPattern()});
     }
 }
 
