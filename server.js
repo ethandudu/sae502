@@ -27,6 +27,11 @@ fastify.register(require('./routes/routes'))
 const start = async () => {
     try {
         await fastify.listen({ port: 3000 }, err => {
+            //remove uploaded.log file
+            const fs = require('fs')
+            if (fs.existsSync('./uploaded.log')) {
+                fs.unlinkSync('./uploaded.log')
+            }
             console.log(`server listening on http://localhost:${fastify.server.address().port}`)
         })
     } catch (e) {
