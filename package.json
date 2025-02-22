@@ -10,15 +10,17 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@fastify/cookie": "^11.0.2",
     "@fastify/cors": "^10.0.2",
+    "@fastify/formbody": "^8.0.2",
     "@fastify/multipart": "^9.0.2",
+    "@fastify/session": "^11.1.0",
     "@fastify/static": "^8.0.4",
     "@fastify/view": "^10.0.2",
     "bootstrap": "^5.3.3",
     "bootstrap-table": "^1.24.0",
     "ejs": "^3.1.10",
     "fastify": "^5.1.0",
-    "fastify-multipart": "^5.3.1",
     "jquery": "^3.7.1",
     "material-symbols": "^0.27.2"
   },
