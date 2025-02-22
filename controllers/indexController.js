@@ -16,9 +16,7 @@ class IndexController {
         reply.redirect('/')
     }
 
-    static statistics(req, reply) {
-        reply.view('statistics', { filename: FileNameModel.getFilename(), stats: JSON.parse(DataModel.getStatistics())});
-    }
+
 }
 
 module.exports = IndexController;
