@@ -1,6 +1,8 @@
+const AuthController = require('../controllers/authController')
+
 const IndexController = require('../controllers/indexController')
 const StatisticsController = require('../controllers/statisticsController')
-const AuthController = require('../controllers/authController')
+const DetectionController = require('../controllers/detectionController')
 
 async function routes(fastify, options) {
     fastify.get('/', { preHandler: AuthController.checkAuth }, IndexController.index)
@@ -11,7 +13,7 @@ async function routes(fastify, options) {
     fastify.get('/auth', AuthController.get)
     fastify.post('/auth', AuthController.auth)
 
-    //fastify.get('/detection', IndexController.detection)
+    fastify.get('/detection', { preHandler: AuthController.checkAuth }, DetectionController.get)
 }
 
 module.exports = routes;
