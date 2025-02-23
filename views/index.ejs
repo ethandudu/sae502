@@ -46,9 +46,7 @@
                     <div class="card-body">
                         <h4 class="text-center" id="filename">Fichier chargé : <%= filename %></h4>
                         <form method="post" enctype="multipart/form-data" class="form-group" id="UploadFile">
-                            <div class="mb-3">
-                                <label for="format" class="form-label">Format</label><input type="text" name="pattern" id="format" class="form-control" placeholder="Format" value='<%= pattern %>' required>
-                            </div>
+                            <small class="text-muted">Format du log : %{LOGIN}e %h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %T </small>
                             <div class="mb-3">
                                 <label for="file" class="form-label">Fichier</label><input type="file" name="file" id="file" class="form-control" accept=".log" required>
                             <button type="submit" class="btn btn-success mt-3">Charger</button>

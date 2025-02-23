@@ -24,7 +24,7 @@ Ce projet est une application web qui affiche des logs Apache2 traités par un s
 ## Utilisation
 1. Lancez le serveur de développement :
     ```bash
-    npm backend/server
+    npm server
     ```
 2. Ouvrez votre navigateur et ouvrez le fichier `frontend/index.html`.
 
