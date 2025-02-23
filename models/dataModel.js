@@ -8,6 +8,10 @@ class dataModel {
     static getStatistics() {
         return getStatistics()
     }
+
+    static getDetection() {
+        return detect()
+    }
 }
 
 function parseLogs() {
@@ -68,6 +72,37 @@ function getStatistics() {
     }
 
     return JSON.stringify(response)
+}
+
+function detect(threshold = 0.1) { // seuil par défaut de 10%
+    let parsedLogs = JSON.parse(parseLogs());
+    if (!Array.isArray(parsedLogs)) {
+        return null;
+    }
+
+    const errorCodes = [400, 401, 403, 404];
+    const ipRequests = {};
+
+    for (const log of parsedLogs) {
+        if (!ipRequests[log.ip]) {
+            ipRequests[log.ip] = { total: 0, errors: 0};
+        }
+        ipRequests[log.ip].total++;
+        if (errorCodes.includes(parseInt(log.status))) {
+            ipRequests[log.ip].errors++;
+        }
+    }
+
+    const result = [];
+    for (const ip in ipRequests) {
+        const { total, errors } = ipRequests[ip];
+        let errorRate = errors / total;
+        if (errorRate >= threshold) {
+            errorRate = Math.round(errorRate * 100);
+            result.push({ ip, errorRate });
+        }
+    }
+    return JSON.stringify(result);
 }
 
 module.exports = dataModel;
