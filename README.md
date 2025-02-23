@@ -26,7 +26,7 @@ Ce projet est une application web qui affiche des logs Apache2 traités par un s
     ```bash
     npm server
     ```
-2. Ouvrez votre navigateur et ouvrez le fichier `frontend/index.html`.
+2. Ouvrez votre navigateur et allez sur `http://localhost:3000`
 
 ## Licence
 Ce projet est sous licence MIT.
