@@ -2,12 +2,15 @@ const repl = require("node:repl");
 
 class AuthController {
     static get(req, reply) {
-        reply.view('auth');
+        if (req.query.errormsg) {
+            return reply.view('auth', { errormsg: req.query.errormsg});
+        }
+        reply.view('auth', { errormsg: null});
     }
 
     static checkAuth(req, reply, done) {
         if (!req.session || !req.session.authenticated) {
-            reply.redirect('/auth');
+            reply.redirect('/auth?errormsg=You are not authenticated')
         } else {
             done()
         }
@@ -22,7 +25,7 @@ class AuthController {
                         req.session.authenticated = true
                         reply.redirect('/')
                     } else {
-                        reply.redirect('/auth')
+                        reply.redirect('/auth?errormsg=Invalid password')
                     }
                 }
             }
